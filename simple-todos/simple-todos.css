@@ -29,10 +29,16 @@ header {
   background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
   padding: 20px 15px 15px 15px;
   position: relative;
+  text-align: center;
 }
 
 #login-buttons {
   display: block;
+}
+
+#location {
+  padding: 10px;
+  text-align: center;
 }
 
 h1 {
@@ -40,7 +46,7 @@ h1 {
   margin: 0;
   margin-bottom: 10px;
   display: inline-block;
-  margin-right: 1em;
+
 }
 
 form {
@@ -49,17 +55,18 @@ form {
   position: relative;
 }
 
-.new-task input {
+.new-location input {
   box-sizing: border-box;
   padding: 10px 0;
   background: transparent;
   border: none;
   width: 100%;
-  padding-right: 80px;
+
   font-size: 1em;
+  text-align: center;
 }
 
-.new-task input:focus{
+.new-location input:focus{
   outline: 0;
 }
 
@@ -120,7 +127,7 @@ header .hide-completed {
     clear: both;
   }
 
-  .new-task input {
+  .new-location input {
     padding-bottom: 5px;
   }
 }/* CSS declarations go here */

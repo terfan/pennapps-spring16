@@ -1,7 +1,10 @@
 function getSentiment(s)
 {
     Meteor.call("getAlchHTTP", [s], function(error, results) {
-        console.log(results.data["docSentiment"]["score"]); //results.data should be a JSON object
+        //console.log(results.data["docSentiment"]["score"]); //results.data should be a JSON object
+        var score = results.data["docSentiment"]["score"];
+        $("#location").text(s + " " + score);
+        return score;
     });
 }
 
@@ -20,14 +23,15 @@ if (Meteor.isClient) {
   // This code only runs on the client
 
 Template.body.events({
-    "submit .new-task": function (event) {
+    "submit .new-location": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
  
       // Get value from form element
       var text = event.target.text.value;
 
-      getSentiment(text);
+    getSentiment(text);
+
  
       // Clear form
       event.target.text.value = "";
