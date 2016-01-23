@@ -1,24 +1,23 @@
-if (Meteor.isClient) {
-  // This code only runs on the client
-  Template.body.helpers({
-    tasks: [
-      { text: "This is task 1" },
-      { text: "This is task 2" },
-      { text: "This is task 3" }
-    ]
-  });
+function getSentiment(s)
+{
+    Meteor.call("getAlchHTTP", [s], function(error, results) {
+        console.log(results.data["docSentiment"]["score"]); //results.data should be a JSON object
+    });
 }
 
-Tasks = new Mongo.Collection("tasks");
+if (Meteor.isServer) {
+    Meteor.methods({
+        getAlchHTTP: function (text) {
+            this.unblock();
+            url = "http://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment?apikey=0e2d5d3c35387b178bd6f8d27c2e44ca83fbc5aa&outputMode=json&text=" + text;
+
+            return Meteor.http.call("GET", url);
+        }
+    });
+}
  
 if (Meteor.isClient) {
   // This code only runs on the client
-  Template.body.helpers({
-    tasks: function () {
-      return Tasks.find({});
-    }
-  });
-
 
 Template.body.events({
     "submit .new-task": function (event) {
@@ -27,12 +26,8 @@ Template.body.events({
  
       // Get value from form element
       var text = event.target.text.value;
- 
-      // Insert a task into the collection
-      Tasks.insert({
-        text: text,
-        createdAt: new Date() // current time
-      });
+
+      getSentiment(text);
  
       // Clear form
       event.target.text.value = "";
