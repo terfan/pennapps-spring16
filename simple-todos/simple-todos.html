@@ -1,9 +1,11 @@
 <head>
   <title>SentiMeter</title>
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
  
 <body>
-  <div class="container">
+  <!--<div class="container">
     <header>
       <h1>SentiMeter</h1>
  
@@ -13,10 +15,11 @@
     </header>
  
     <div id="location" class="new-location"></div>
-  </div>
+  </div>-->
 
    <div class="container">
     <header>
+      <h1>SentiMeter</h1>
       <h1>Tweets</h1>
  
       <form class="tweet" id="tweet">
@@ -37,5 +40,10 @@
 
  
 <template name="tweet">
-  <li>{{text}}</li>
+  <li><h2>{{text}}</h2></li>
+  {{#if positive}}
+    <li class="positive">{{score}}</li>
+  {{else}}
+    <li class="negative">{{score}}</li>
+  {{/if}}
 </template>
