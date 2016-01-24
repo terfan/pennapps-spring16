@@ -12,15 +12,30 @@
       </form>
     </header>
  
-    <ul>
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </ul>
     <div id="location" class="new-location"></div>
   </div>
-</body>
+
+   <div class="container">
+    <header>
+      <h1>Tweets</h1>
  
-<template name="task">
+      <form class="tweet" id="tweet">
+        <input type="text" name="text" placeholder="Search for a Hashtag" />
+      </form>
+    </header>
+
+    <ul>
+      {{#each tweets}}
+        {{>tweet}}
+      {{/each}}
+    </ul>
+
+  </div>
+
+</body>
+
+
+ 
+<template name="tweet">
   <li>{{text}}</li>
 </template>
